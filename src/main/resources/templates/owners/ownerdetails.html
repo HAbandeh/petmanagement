@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<h1 th:text="${owner.firstName}"></h1>
+<h1 th:text="${owner.LastName}"></h1>
+<h1 th:text="${owner.phoneNumber}"></h1>
+
+
+<table>
+  <thead>
+  <th th:text="'Pet Name'"></th>
+  <th th:text="'Pet Age'"></th>
+  <th th:text="'View'"></th>
+<!--  <th th:text="'Delete'"></th>-->
+  </thead>
+  <tbody>
+  <tr th:each="pet: ${owner.pets}">
+
+    <td th:text="${pet.name}"></td>
+    <td th:text="${pet.age}"></td>
+
+    <td >
+      <a th:href="@{'/pets/' + ${owner.id} + '/' + ${pet.id} + '/view'}" th:text="View"></a>
+    </td>
+
+<!--    <td >-->
+<!--      <a th:href="@{'/owners/' + ${owner.id} + '/delete'}" th:text="Delete"></a>-->
+<!--    </td>-->
+  </tr>
+
+
+  </tbody>
+</table>
+
+<a th:href="@{'/owners/' + ${owner.id} + '/edit'}" class="btn btn-default">Edit
+  Owner</a>
+
+
+<a th:href="@{'/pets/' + ${owner.id}   + '/add'}" class="btn btn-default">Add pet</a>
+
+
+
+
+<!--<a th:href="@{'/pets/' + ${owner.id} + '/new'}" class="btn btn-default">New Pet</a>-->
+
+
+
+
+</html>

@@ -1,0 +1,11 @@
+INSERT INTO Owners (ID, First_Name, Last_Name, Phone_Number)
+VALUES (1, 'HASHEM', 'ABANDEH', '07812345');
+
+INSERT INTO Owners (ID, First_Name, Last_Name, Phone_Number)
+VALUES (2, 'FOAD', 'ABANDEH', '07111');
+
+INSERT INTO PETS(ID, AGE, NAME, OWNER)
+VALUES(1, 3, 'RIX1', 1);
+
+INSERT INTO PETS(ID, AGE, NAME, OWNER)
+VALUES(2, 3, 'RIX2', 1);

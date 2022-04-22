@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1 th:text="${pet.owner.id}"> </h1>
+<h1 th:text="${pet.owner.firstName}"> </h1>
+
+<form th:object="${pet}" th:action="@{'/pets'}" class="form-horizontal" id="add-owner-form" method="post">
+
+
+    <input type="hidden" th:field="*{id}" th:value="*{id}"/>
+    <input type="text" class="form-control" th:field="*{name}"/>
+    <input type="text" class="form-control" th:field="*{age}"/>
+    <button type="submit" class="btn btn-default">Submit</button>
+</form>
+
+</body>
+</html>
