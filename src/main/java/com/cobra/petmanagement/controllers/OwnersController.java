@@ -65,6 +65,7 @@ public class OwnersController {
     @RequestMapping("/{id}/delete")
     public String deleteOwner(@PathVariable String id, Model model){
 
+        this.ownersService.deleteById(Long.valueOf(id));
         //model.addAttribute("owners",this.ownersService.findById(Long.valueOf(id)));
         return "redirect:" + LIST_OWNERS_HTML_PAGE;
     }

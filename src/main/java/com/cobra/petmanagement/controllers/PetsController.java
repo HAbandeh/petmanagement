@@ -63,22 +63,35 @@ public class PetsController {
 //        return this.ownersService.findById(Long.valueOf(owner_id));
 //    }
 
-    @PostMapping
-    public String save(Owner owner, Pet pet, Model model){
+    @PostMapping("/{owner_Id}/save")
+    public String save(@PathVariable("owner_Id") String owner_Id, Pet pet, Model model){
 
+        Owner owner = this.ownersService.findById(Long.valueOf(owner_Id));
 
-        System.out.println("****************************");
-        System.out.println(owner.getId());
-        System.out.println(owner.getFirstName());
+        Pet savedPet = null;
 
-        System.out.println(pet.getId());
-        System.out.println("****************************");
+        if(pet.getId() == null || pet.getId() == 0){
 
+            pet.setOwner(owner);
+            this.petService.save(pet);
+            owner.getPets().add(pet);
+            savedPet = pet;
+        } else {
 
-        pet.setOwner(owner);
-        Pet savedPet = this.petService.save(pet);
-//        model.addAttribute("pet",new Owner());
-        return "redirect:/pets/" +owner.getId() + "/" + savedPet.getId() + "/view";
+            for(Pet p: owner.getPets()){
+                if(p.getId() == pet.getId()){
+                    p.setName(pet.getName());
+                    p.setAge(pet.getAge());
+                    this.ownersService.save(owner);
+                    savedPet = p;
+                    break;
+                }
+            }
+
+        }
+
+       // return "redirect:/pets/" + owner_Id + "/" + savedPet.getId() + "/view";
+        return "redirect:/owners/" + owner_Id  + "/view";
     }
 
 }

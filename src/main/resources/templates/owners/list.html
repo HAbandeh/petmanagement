@@ -1,19 +1,30 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-<table>
+
+<table class="table table-sm table-dark">
     <thead>
-        <th th:text="'First Name'"></th>
-        <th th:text="'Last Name'"></th>
-        <th th:text="'Phone Number'"></th>
-        <th th:text="'View'"></th>
-        <th th:text="'Delete'"></th>
+    <tr>
+
+
+        <th scope="col" th:text="'First Name'"></th>
+        <th scope="col" th:text="'Last Name'"></th>
+        <th scope="col" th:text="'Phone Number'"></th>
+        <th  scope="col" th:text="'View'"></th>
+        <th scope="col" th:text="'Delete'"></th>
+    </tr>
     </thead>
     <tbody>
+
     <tr th:each="owner: ${owners}">
 
         <td th:text="${owner.firstName}"></td>
@@ -25,13 +36,13 @@
         </td>
 
         <td >
-             <a th:href="@{'/owners/' + ${owner.id} + '/delete'}" th:text="Delete"></a>
+            <a th:href="@{'/owners/' + ${owner.id} + '/delete'}" th:text="Delete"></a>
         </td>
     </tr>
 
-
     </tbody>
 </table>
+
 
 <a th:href="@{'/owners/new'}" class="btn btn-default">Add
     Owner</a>

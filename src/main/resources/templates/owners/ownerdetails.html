@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
@@ -7,18 +12,21 @@
 <body>
 
 <h1 th:text="${owner.firstName}"></h1>
-<h1 th:text="${owner.LastName}"></h1>
+<h1 th:text="${owner.lastName}"></h1>
 <h1 th:text="${owner.phoneNumber}"></h1>
 
 
-<table>
+<table class="table table-sm table-dark">
   <thead>
-  <th th:text="'Pet Name'"></th>
-  <th th:text="'Pet Age'"></th>
-  <th th:text="'View'"></th>
-<!--  <th th:text="'Delete'"></th>-->
+  <tr>
+    <th scope="col" th:text="'Pet Name'"></th>
+    <th scope="col" th:text="'Pet Age'"></th>
+    <th scope="col" th:text="'View'"></th>
+
+  </tr>
   </thead>
   <tbody>
+
   <tr th:each="pet: ${owner.pets}">
 
     <td th:text="${pet.name}"></td>
@@ -28,14 +36,11 @@
       <a th:href="@{'/pets/' + ${owner.id} + '/' + ${pet.id} + '/view'}" th:text="View"></a>
     </td>
 
-<!--    <td >-->
-<!--      <a th:href="@{'/owners/' + ${owner.id} + '/delete'}" th:text="Delete"></a>-->
-<!--    </td>-->
   </tr>
-
 
   </tbody>
 </table>
+
 
 <a th:href="@{'/owners/' + ${owner.id} + '/edit'}" class="btn btn-default">Edit
   Owner</a>
@@ -44,11 +49,8 @@
 <a th:href="@{'/pets/' + ${owner.id}   + '/add'}" class="btn btn-default">Add pet</a>
 
 
+<a th:href="@{'/owners/list'}" class="btn btn-default">Owners List</a>
 
-
-<!--<a th:href="@{'/pets/' + ${owner.id} + '/new'}" class="btn btn-default">New Pet</a>-->
-
-
-
+</body>
 
 </html>
