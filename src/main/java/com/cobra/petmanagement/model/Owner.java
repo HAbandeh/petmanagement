@@ -12,6 +12,7 @@ public class Owner extends Base{
     private String firstName;
 
     @Column(name ="Last_Name")
+
     private String lastName;
 
     @Column(name = "Phone_Number")

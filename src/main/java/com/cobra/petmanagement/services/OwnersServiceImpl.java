@@ -1,10 +1,12 @@
 package com.cobra.petmanagement.services;
 
+import com.cobra.petmanagement.exceptions.NotFoundException;
 import com.cobra.petmanagement.model.Owner;
 import com.cobra.petmanagement.repositories.OwnersRepo;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -22,7 +24,12 @@ public class OwnersServiceImpl implements  OwnersService{
 
     @Override
     public Owner findById(long id) {
-        return this.ownersRepo.findById(id).orElse(null);
+        Optional<Owner> ownerOptional = this.ownersRepo.findById(id);
+
+        if(!ownerOptional.isPresent()){
+            throw new NotFoundException("Owner not found ! ID: " + id);
+        }
+        return ownerOptional.orElse(null);
     }
 
     @Override

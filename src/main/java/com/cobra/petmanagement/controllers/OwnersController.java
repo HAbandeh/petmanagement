@@ -1,12 +1,13 @@
 package com.cobra.petmanagement.controllers;
 
+import com.cobra.petmanagement.exceptions.NotFoundException;
 import com.cobra.petmanagement.model.Owner;
 import com.cobra.petmanagement.services.OwnersService;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/owners")
@@ -69,5 +70,26 @@ public class OwnersController {
         //model.addAttribute("owners",this.ownersService.findById(Long.valueOf(id)));
         return "redirect:" + LIST_OWNERS_HTML_PAGE;
     }
+
+    @ExceptionHandler(NotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND) // without this the code will make the response 200
+    public ModelAndView handleNotFound(Exception e){
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("404notfound");
+        modelAndView.addObject("exception", e);
+        return modelAndView;
+    }
+
+    // to avoid writing this multiple times we are moving to ContollerExceptionHandler
+//    @ExceptionHandler(NumberFormatException.class)
+//    @ResponseStatus(HttpStatus.NOT_FOUND) // without this the code will make the response 200
+//    public ModelAndView handleNumberFormatException(Exception e){
+//
+//        ModelAndView modelAndView = new ModelAndView();
+//        modelAndView.setViewName("404notfound");
+//        modelAndView.addObject("exception", e);
+//        return modelAndView;
+//    }
 
 }
