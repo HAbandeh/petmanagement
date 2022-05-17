@@ -7,6 +7,6 @@ import org.springframework.context.annotation.Primary;
 public class ProdLoggingService implements LogginService{
 
 	public void log(String msg) {
-		System.out.println("Production " + msg);
+		System.out.println("Production: " + msg);
 	}
 }

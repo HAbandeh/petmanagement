@@ -5,6 +5,6 @@ public class QALoggingService implements LogginService{
 
 	@Override
 	public void log(String msg) {
-		System.out.println("QA " + msg);
+		System.out.println("QA: " + msg);
 	}
 }
