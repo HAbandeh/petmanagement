@@ -6,7 +6,6 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.cobra.petmanagement.externalapismodel.CountryTime;
-import com.cobra.petmanagement.externalapismodel.UserData;
 
 @Service
 public class ExternalAPIServiceImple implements ExternalAPIService{
